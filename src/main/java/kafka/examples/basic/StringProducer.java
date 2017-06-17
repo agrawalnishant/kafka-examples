@@ -2,28 +2,35 @@ package kafka.examples.basic;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
-public class StringProducer {
+public class StringProducer implements BasicProperties {
 
-    private static final int MAX_LOOPS = 100;
+  static final Logger LOG = LoggerFactory.getLogger(StringProducer.class);
 
-    public static void main(String[] args) {
-        produce();
+  private static final int MAX_LOOPS = 200;
+
+  public static void main(final String[] args) {
+    final StringProducer stringProducer = new StringProducer();
+    stringProducer.produce();
+  }
+
+  void produce() {
+    final KafkaProducer<String, String> stringKafkaProducer = new KafkaProducer<String, String>(
+        getProducerProperties());
+    try {
+      for (int i = 0; i < MAX_LOOPS; i++) {
+        final Object o = stringKafkaProducer
+            .send(new ProducerRecord<String, String>(BasicProperties.TOPIC_NAME, "msg: " + i));
+        LOG.info("Produced Message = [" + o + "]");
+
+      }
+    } catch (final Exception ex) {
+      LOG.trace("Error: ", ex);
+    } finally {
+      stringKafkaProducer.close();
     }
-
-    static void produce() {
-        KafkaProducer<String, String> stringKafkaProducer = new KafkaProducer<String, String>(BasicProperties.getProducerProperties());
-        try {
-            for (int i = 0; i < MAX_LOOPS; i++) {
-                Object o = stringKafkaProducer.send(new ProducerRecord<String, String>(BasicProperties.TOPIC_NAME, "msg: " + i));
-                System.out.println("Produced Message = [" + o + "]");
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            stringKafkaProducer.close();
-        }
-
-    }
+  }
 }

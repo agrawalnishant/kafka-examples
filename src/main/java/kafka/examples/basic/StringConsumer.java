@@ -1,37 +1,45 @@
 package kafka.examples.basic;
 
 
+import java.util.ArrayList;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+class StringConsumer implements BasicProperties {
 
-class StringConsumer {
+  static final Logger LOG = LoggerFactory.getLogger(StringConsumer.class);
 
-    public static void main(String[] args) {
-        consume();
+  public static void main(final String[] args) {
+    final StringConsumer consumer = new StringConsumer();
+    consumer.consume();
+  }
+
+  void consume() {
+    final ArrayList<String> topicList = new ArrayList<>();
+    topicList.add(BasicProperties.TOPIC_NAME);
+    final KafkaConsumer stringKafkaConsumer = new KafkaConsumer(getConsumerProperties());
+    stringKafkaConsumer.subscribe(topicList);
+    try {
+      while (true) {
+        final ConsumerRecords<String, String> consumerRecords = stringKafkaConsumer.poll(10);
+        consumerRecords.spliterator().forEachRemaining(this::print);
+      }
+    } catch (final Exception exc) {
+      LOG.trace("Error:", exc);
+    } finally {
+      stringKafkaConsumer.close();
     }
-
-    static void consume() {
-        KafkaConsumer stringKafkaConsumer = new KafkaConsumer(BasicProperties.getConsumerProperties());
-        ArrayList<String> topicList = new ArrayList<>();
-        topicList.add(BasicProperties.TOPIC_NAME);
-        stringKafkaConsumer.subscribe(topicList);
-        try {
-            while (true) {
-                ConsumerRecords<String, String> consumerRecords = stringKafkaConsumer.poll(10);
-                for (ConsumerRecord<String, String> record : consumerRecords) {
-                    System.out.println(String.format("Topic: %s, Partition: %d, Offset: %d, Key: %s, Value %s", record.topic(), record.partition(), record.offset(), record.key(), record.value()));
-                }
-            }
-        } catch (Exception exc) {
-            exc.printStackTrace();
-        } finally {
-            stringKafkaConsumer.close();
-        }
-
-    }
+  }
 
 
+  private void print(final ConsumerRecord<String, String> record) {
+    LOG.info("Topic: {}, Partition: {}, Offset: {}, Key: {}, Value {}", record.topic(),
+        record.partition(), record.offset(), record.key(), record.value());
+  }
 }
+
+
+
