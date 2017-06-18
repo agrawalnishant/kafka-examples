@@ -3,12 +3,14 @@ package kafka.examples.basic;
 
 interface BasicProperties {
 
+  int MESSAGE_COUNT = 200;
+
   String BROKER_BOOTSTRAP_URL = "localhost:9092";
 
   String TOPIC_NAME = "topic_basic";
 
   default java.util.Properties getProducerProperties() {
-    java.util.Properties props = new java.util.Properties();
+    final java.util.Properties props = new java.util.Properties();
     props.put("bootstrap.servers", BROKER_BOOTSTRAP_URL);
     props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
     props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
@@ -18,7 +20,7 @@ interface BasicProperties {
   }
 
   default java.util.Properties getConsumerProperties() {
-    java.util.Properties props = getProducerProperties();
+    final java.util.Properties props = getProducerProperties();
     props.put("group.id", "basic");
     return props;
   }

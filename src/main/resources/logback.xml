@@ -7,7 +7,7 @@
     </layout>
   </appender>
 
-  <logger level="TRACE" name="com.base22"/>
+  <logger level="TRACE" name="kafka.examples"/>
 
 
   <root level="info">

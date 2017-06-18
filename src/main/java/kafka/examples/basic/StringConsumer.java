@@ -2,25 +2,22 @@ package kafka.examples.basic;
 
 
 import java.util.ArrayList;
+import java.util.Properties;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class StringConsumer implements BasicProperties {
+class StringConsumer {
 
   static final Logger LOG = LoggerFactory.getLogger(StringConsumer.class);
 
-  public static void main(final String[] args) {
-    final StringConsumer consumer = new StringConsumer();
-    consumer.consume();
-  }
 
-  void consume() {
+  void consume(final Properties consumerProps, final String topicName) {
     final ArrayList<String> topicList = new ArrayList<>();
-    topicList.add(BasicProperties.TOPIC_NAME);
-    final KafkaConsumer stringKafkaConsumer = new KafkaConsumer(getConsumerProperties());
+    topicList.add(topicName);
+    final KafkaConsumer stringKafkaConsumer = new KafkaConsumer(consumerProps);
     stringKafkaConsumer.subscribe(topicList);
     try {
       while (true) {
@@ -40,6 +37,3 @@ class StringConsumer implements BasicProperties {
         record.partition(), record.offset(), record.key(), record.value());
   }
 }
-
-
-
