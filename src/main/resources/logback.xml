@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+  <variable name="mdcPattern" scope="context"
+    value="%replace(consumer:%X{consumerid}){'[a-z]+:( |$)', ''}"/>
+  <variable name="logPattern" scope="context" value="%-5p %d [%t] [${mdcPattern}] %c{20}: %m%n"/>
   <appender class="ch.qos.logback.core.ConsoleAppender" name="STDOUT">
-    <layout class="ch.qos.logback.classic.PatternLayout">
-      <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
-    </layout>
+    <encoder>
+      <pattern>${logPattern}</pattern>
+    </encoder>
   </appender>
 
   <logger level="TRACE" name="kafka.examples"/>

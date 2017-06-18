@@ -3,9 +3,11 @@ package kafka.examples.basic;
 
 interface BasicProperties {
 
-  int MESSAGE_COUNT = 200;
+  int MESSAGE_COUNT = 2000;
 
-  String BROKER_BOOTSTRAP_URL = "localhost:9092";
+  int AVAILABLE_KAFKA_PARTITIONS_MIN = 2;
+
+  String BROKER_BOOTSTRAP_URL = "localhost:9092, localhost:9093";
 
   String TOPIC_NAME = "topic_basic";
 
