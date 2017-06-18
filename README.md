@@ -9,6 +9,6 @@ Examples are arranges by following topics:
 + Setup
 + Warmup with console utilities
 + Consumer Group
-+ Simple Producer and Simple Consumer
++ [Basic Producer and Baisc Consumer](https://github.com/agrawalnishant/kafka-examples/tree/master/src/main/java/kafka/examples/basic)
 + Custom Partitioner
 + Schema Registery
