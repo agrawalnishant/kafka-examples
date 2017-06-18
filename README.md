@@ -28,5 +28,5 @@ Examples are arranges by following topics:
         - `log.dirs` to new log directoy (say append "-1" to existing)
         - `listeners` to new port (say, 9093)
     Keep zookeeper connect port as same as earlier.
-    2. Now use following command, fomr bin folder, to start a Kafka replica synced to same zookeeper:
+    2. Now use following command, from bin folder, to start a Kafka replica synced to same zookeeper:
         - `kafka-server-start.sh ../config/server-1.properties`
