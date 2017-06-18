@@ -25,7 +25,7 @@ Examples are arranges by following topics:
         `kafka-server-start.sh ../config/server.properties`
 3. Now above step# 2, would start a single Zookeep instance and a single Kafka broker. This setup is enough for basic message production and consumption. But for a more robust abd fault-tolerant Kafka Setup, we need at least 3 replicas of Kafka for single failover scenario. Fow now, lets start one more replica to support a Consumer Group with 2 consumers. Single replica can only attach to a single Kafka consumer in a group setting.
     1. Each new broker instance needs its own server.properties file. So clone the existing config/server.properties to, say server-1.properties, and change these parameters and save the file as server-1.properties or any other name.
-        - `log.dirs` to new log directoy (say append "-1" to existing)
+        - `log.dirs` to new log directoy (say /tmp/kafka-logs-1)
         - `listeners` to new port (say, 9093)
     Keep zookeeper connect port as same as earlier.
     2. Now use following command, from bin folder, to start a Kafka replica synced to same zookeeper:
