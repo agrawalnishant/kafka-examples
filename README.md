@@ -15,7 +15,7 @@ Examples are arranges by following topics:
 
 ## Setup
 ### Basic Setup
-1. To uses some advanced features of Kafka, we will use Confluent's distribution available in [Download Center](https://www.confluent.io/download-center/). Download and un-Tar the contents. Lets call this location as KAFKA_HOME, for the puepose of discussion here. This location has folders like bin/ and config/ inside.
+1. To uses some advanced features of Kafka, we will use Confluent's distribution available in [Download Center](https://www.confluent.io/download-center/). Download and un-Tar the contents. Lets call this location as KAFKA_HOME, for the purpose of discussion here. This location has folders like bin/ and config/ inside.
 
 2. In console / terminal window go to KAFKA_HOME location, and excute following commands:
     1. To start zookeeper:
