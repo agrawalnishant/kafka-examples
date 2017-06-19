@@ -43,5 +43,5 @@ Fow now, lets start one more broker to support a Consumer Group with 2 consumers
      - `kafka-server-start.sh ../config/server-1.properties`
         
 ### Enable 2 Partitions for Topic to support Consumer Group
-Use following command to increase replica count of topic, created ealier, from One to Two:
+* Use following command to increase replica count of topic, created ealier, from One to Two:
     - `kafka-topics.sh  -zookeeper localhost:2181 --alter --topic topic_basic --partitions 2`
