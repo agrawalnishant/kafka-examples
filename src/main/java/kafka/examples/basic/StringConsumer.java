@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
-class StringConsumer {
+public class StringConsumer {
 
   static final Logger LOG = LoggerFactory.getLogger(StringConsumer.class);
 
@@ -21,7 +21,7 @@ class StringConsumer {
   /**
    * Consumes messages received over topicName kafka topic.
    */
-  void consume(final Properties consumerProps, final String topicName) {
+  public void consume(final Properties consumerProps, final String topicName) {
     MDC.put("consumerid", consumerId.toString());
 
     // Prepare List of topics this consumer will consume messages from.

@@ -1,8 +1,11 @@
-package kafka.examples.basic;
+package kafka.examples.consumergroup;
 
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import kafka.examples.basic.BasicProperties;
+import kafka.examples.basic.StringConsumer;
+import kafka.examples.basic.StringProducer;
 
 public class StringProducerConsumerGroupDemo implements BasicProperties {
 

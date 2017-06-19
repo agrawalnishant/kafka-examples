@@ -15,7 +15,8 @@ public class StringProducer {
    * Creates messageCount number of messages, and sends them to topicName.
    * Used producerProps to connect to Kafka Broker through Zookeeper.
    */
-  void produce(final Properties producerProps, final String topicName, final int messageCount) {
+  public void produce(final Properties producerProps, final String topicName,
+      final int messageCount) {
 
     //Initialize Message Producer with properties that include broker URLs, and Serializers.
     final KafkaProducer<String, String> stringKafkaProducer = new KafkaProducer<String, String>(

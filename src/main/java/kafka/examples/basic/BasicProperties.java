@@ -1,7 +1,7 @@
 package kafka.examples.basic;
 
 
-interface BasicProperties {
+public interface BasicProperties {
 
   int MESSAGE_COUNT = 2000;
 

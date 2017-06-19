@@ -1,0 +1,11 @@
+{
+  "namespace": "kafka.examples.schema.registry",
+  "type": "record",
+  "name": "KafkaExampleMessage",
+  "fields": [
+    {
+      "name": "f1",
+      "type": "string"
+    }
+  ]
+}
