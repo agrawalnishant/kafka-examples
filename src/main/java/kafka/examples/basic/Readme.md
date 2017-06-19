@@ -7,4 +7,4 @@ each consumer should attach to a different partition of Kafka broker.
 
 So, we need to have at least 2 partitions in our Kafka Cluster.
 
-Instructions to have a 2-replica Kafka Cluster is provided in [Setup](https://github.com/agrawalnishant/kafka-examples/blob/master/src/main/java/kafka/examples/basic/StringProducerConsumerGroupDemo.java) section of main Readme file.
+Instructions to have a 2-replica Kafka Cluster is provided in [Setup](https://github.com/agrawalnishant/kafka-examples#setup) section of main Readme file.
