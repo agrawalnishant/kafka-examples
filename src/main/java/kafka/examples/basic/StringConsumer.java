@@ -14,17 +14,31 @@ import org.slf4j.MDC;
 class StringConsumer {
 
   static final Logger LOG = LoggerFactory.getLogger(StringConsumer.class);
+
+  // UUID used in Logback MDC to identify messages consumed by different consumers
   private final UUID consumerId = UUID.randomUUID();
 
+  /**
+   * Consumes messages received over topicName kafka topic.
+   */
   void consume(final Properties consumerProps, final String topicName) {
     MDC.put("consumerid", consumerId.toString());
+
+    // Prepare List of topics this consumer will consume messages from.
+    // Here we only consume from a single topic.
     final ArrayList<String> topicList = new ArrayList<>();
     topicList.add(topicName);
+
+    // Create Kafka consumer to listen to the topic name passes in parameter.
     final KafkaConsumer stringKafkaConsumer = new KafkaConsumer(consumerProps);
     stringKafkaConsumer.subscribe(topicList);
     try {
       while (true) {
+
+        //Consumer will poll partition every 10 milli-secs to check for new messages.
         final ConsumerRecords<String, String> consumerRecords = stringKafkaConsumer.poll(10);
+
+        // Iterate over each message (<code> ConsumerRecord </code>), and print its attributes.
         consumerRecords.spliterator().forEachRemaining(this::print);
       }
     } catch (final Exception exc) {
