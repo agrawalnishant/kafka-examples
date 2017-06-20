@@ -49,7 +49,7 @@ __Enable 2 Partitions for Topic to support Consumer Group__
     - `kafka-topics.sh  -zookeeper localhost:2181 --alter --topic topic_basic --partitions 2`
     
 
-### Schema Registry
+### Schema Registry Setup
 
 In any messaging system, it is important to keep producers and consumers to agree on message schema. If a message enters messaging system that is not valid for a consuming application, it will add overhead on these applications to handle such invalid messages.
 
