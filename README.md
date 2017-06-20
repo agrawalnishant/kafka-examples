@@ -28,12 +28,14 @@ Examples are arranges by following topics:
     - `kafka-topics.sh  -zookeeper localhost:2181 --create --topic topic_basic --replication-factor 1 --partitions 1`
 
         
-### Create Replica Broker for Consumer Group
+### Multi-partition Setup for Consumer Group
 Step# 2 above would start a single Zookeeper instance and a single Kafka broker. This setup is enough for basic message production and consumption. 
 
-But for a more robust abd fault-tolerant Kafka Setup, we need at least 3 replicas and 3 partitions of Kafka for single failover instance.
+But for a more robust and fault-tolerant Kafka Setup, we need at least 3 replicas and 3 partitions of Kafka for single failover instance.
 
-Fow now, lets start one more broker to support a Consumer Group with 2 consumers. Single partition can only attach to a single Kafka consumer in a group setting.
+__Create 2 partitions__
+
+Single partition can only attach to a single Kafka consumer in a group setting. So, lets start one more broker to support a Consumer Group with 2 consumers. 
 * Each new broker instance needs its own `server.properties` file. 
   So clone the existing config/server.properties to, say `server-1.properties`, and change these parameters:
     - `log.dirs` to new log directoy (say /tmp/kafka-logs-1)
@@ -42,6 +44,6 @@ Fow now, lets start one more broker to support a Consumer Group with 2 consumers
  * Use following command, from bin folder, to start a Kafka replica synced to same zookeeper:
      - `kafka-server-start.sh ../config/server-1.properties`
         
-### Enable 2 Partitions for Topic to support Consumer Group
+__Enable 2 Partitions for Topic to support Consumer Group__
 * Use following command to increase replica count of topic, created ealier, from One to Two:
     - `kafka-topics.sh  -zookeeper localhost:2181 --alter --topic topic_basic --partitions 2`
