@@ -49,7 +49,7 @@ __Enable 2 Partitions for Topic to support Consumer Group__
     - `kafka-topics.sh  -zookeeper localhost:2181 --alter --topic topic_basic --partitions 2`
     
 
-### Schema Registry Setup
+### Setup Schema Registry
 
 In any messaging system, it is important to keep producers and consumers to agree on message schema. If a message enters messaging system that is not valid for a consuming application, it will add overhead on these applications to handle such invalid messages.
 
@@ -59,7 +59,8 @@ Most messaging and streaming systems use Avro, for reasons shared by Cloudera [h
 
 Please follow these steps for SchemaRegisteryDemo to work:
 * Start Schema Registry
-    - `lorem ipsum`
+  This is the reason we needed the Confluent's distribution of Kafka. Go to bin folder in expanded Kafka.
+    - `schema-registry-start ../etc/schema-registry/schema-registry.properties`
     
 * Compile Avro Schema (KafkaExampleMessage.avsc) to Java class:
     - `mvn generate-sources`
