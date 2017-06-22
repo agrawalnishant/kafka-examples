@@ -1,32 +1,50 @@
 package kafka.examples.schema.registry;
 
+import static kafka.examples.basic.BasicProperties.TOPIC_NAME;
+import static kafka.examples.schema.registry.RegistryProperties.DEFAULT_BASE_REGISTRY_SUBJECT_URL;
+import static kafka.examples.schema.registry.RegistryProperties.SCHEMA_FILE;
+import static kafka.examples.schema.registry.RegistryProperties.VALUE_SUFFIX;
+import static kafka.examples.schema.registry.RegistryProperties.VERSIONS;
+
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Scanner;
 
 public class SchemaRegistryUtils {
 
-  private static final String DEFAULT_BASE_SR_URL = "http://localhost:8081/";
+  public static void main(final String[] args) {
+
+    //addOrUpdateSchema();
+    System.out.println("Now, getting registered types");
+    getRegisteredTypes();
+
+    getLatestRegisteredVersionOfSubject(TOPIC_NAME);
+
+  }
 
   public static void addOrUpdateSchema() {
 
     try {
 
-      final URL url = new URL("http://localhost:8081/subjects/my_topic_1-value/versions");
+      final URL url = new URL(
+          DEFAULT_BASE_REGISTRY_SUBJECT_URL + TOPIC_NAME + VALUE_SUFFIX + VERSIONS);
       final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       conn.setDoOutput(true);
       conn.setRequestMethod("POST");
       conn.setRequestProperty("Content-Type", "application/vnd.schemaregistry.v1+json");
 
       final String input =
-          "{\"schema\":\"{\\\"type\\\":\\\"record\\\",\\\"name\\\":\\\"myrecord\\\",\\\"fields\\\":[{\\\"name\\\":\\\"f1\\\",\\\"type\\\":\\\"string\\\",\\\"default\\\":\\\"\\\"},"
-              +
-              "{\\\"name\\\":\\\"f2\\\",\\\"type\\\":\\\"string\\\",\\\"default\\\":\\\"\\\"}" +
-              "]}\"}";
+          "{\"schema\":\"" + readFile(SCHEMA_FILE).replace("\"", "\\\"").replace(" ", "")
+              .replace("\n", "")
+              .replace("\r", "") + "\"}";
+      System.out.println(input);
       final OutputStream os = conn.getOutputStream();
       os.write(input.getBytes());
       os.flush();
@@ -63,7 +81,7 @@ public class SchemaRegistryUtils {
 
     URL url = null;
     try {
-      url = new URL(DEFAULT_BASE_SR_URL + "subjects");
+      url = new URL(DEFAULT_BASE_REGISTRY_SUBJECT_URL);
       final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       conn.setDoOutput(true);
       conn.setRequestMethod("GET");
@@ -95,9 +113,10 @@ public class SchemaRegistryUtils {
 
     URL url = null;
     try {
-      url = new URL("http://localhost:8081/subjects/"
+      url = new URL(DEFAULT_BASE_REGISTRY_SUBJECT_URL
           + topicName
-          + "-value/versions/latest");
+          + VALUE_SUFFIX + VERSIONS
+          + "/latest");
       final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       conn.setDoOutput(true);
       conn.setRequestMethod("GET");
@@ -122,6 +141,18 @@ public class SchemaRegistryUtils {
     } catch (final IOException e) {
       e.printStackTrace();
     }
+  }
+
+  protected static String readFile(final String fileName) {
+    String content = null;
+    try {
+      content = new Scanner(
+          new File(SchemaRegistryUtils.class.getClassLoader().getResource(fileName).getFile()))
+          .useDelimiter("\\Z").next();
+    } catch (final FileNotFoundException e) {
+      e.printStackTrace();
+    }
+    return content;
   }
 
 }
