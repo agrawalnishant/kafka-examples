@@ -21,7 +21,7 @@ public class SchemaRegistryUtils {
 
   public static void main(final String[] args) {
 
-    //addOrUpdateSchema();
+    addOrUpdateSchema();
     System.out.println("Now, getting registered types");
     getRegisteredTypes();
 
@@ -49,7 +49,7 @@ public class SchemaRegistryUtils {
       os.write(input.getBytes());
       os.flush();
 
-      if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+      if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
         throw new RuntimeException("Failed : HTTP error code : "
             + conn.getResponseCode());
       }
