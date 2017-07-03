@@ -1,11 +1,11 @@
 # kafka-examples
 
 Here you will find example code, written in __Java__, to understand various features provided by __Kafka__.
-Each of these examples demostrates one or related aspects of Kafka messaging, in a __simple__ manner.
+These examples demostrate different concepts of Kafka messaging, in a __simple__ manner.
 
-These examples expect a minimal setup, for which instructions are mentioned in __Setup__ section at the end. Please use these instructions before running the code.
+These examples expect a minimal setup, for which instructions are mentioned in __Setup__ section below. Please follow these instructions before running the code.
 
-Examples are arranges by following topics:
+Examples are arranged by following topics:
 
 + Warmup with console utilities
 + [Basic Producer and Baisc Consumer](https://github.com/agrawalnishant/kafka-examples/tree/master/src/main/java/kafka/examples/basic)
@@ -15,9 +15,9 @@ Examples are arranges by following topics:
 
 ## Setup
 ### Basic Setup
-1. To uses some advanced features of Kafka, we will use Confluent's distribution available in [Download Center](https://www.confluent.io/download-center/). Download and un-Tar the contents. Lets call this location as KAFKA_HOME, for the purpose of discussion here. This location has folders like bin/ and config/ inside.
+1. To use some advanced features of Kafka, we will use Confluent's distribution available in [Download Center](https://www.confluent.io/download-center/). Download and un-Tar the contents. Lets call this location as KAFKA_HOME, for the purpose of discussion here. This location has folders like bin/ and config/ inside.
 
-2. In console / terminal window go to KAFKA_HOME location, and excute following commands:
+2. In console / terminal window go to KAFKA_HOME location, and execute following commands:
     1. Start zookeeper:
     `zookeeper-server-start.sh ../config/zookeeper.properties`
         - Wait for Zookeeper to start.
