@@ -63,7 +63,7 @@ Please follow these steps for SchemaRegisteryDemo to work:
   Go to bin folder in untarred / unzipped Kafka, and execute:
     - `schema-registry-start ../etc/schema-registry/schema-registry.properties`
     
-    This is the reason we needed the Confluent's distribution of Kafka. 
+    This is the reason we need the Confluent's distribution of Kafka. 
     
 * Compile Avro Schema (KafkaExampleMessage.avsc) to Java class:
     - `mvn generate-sources`
