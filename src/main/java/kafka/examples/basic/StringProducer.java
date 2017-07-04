@@ -15,18 +15,15 @@ public class StringProducer {
    * Creates messageCount number of messages, and sends them to topicName.
    * Used producerProps to connect to Kafka Broker through Zookeeper.
    */
-  public void produce(final Properties producerProps, final String topicName,
-      final int messageCount) {
+  public void produce(final Properties producerProps, final String topicName, final int messageCount) {
 
     //Initialize Message Producer with properties that include broker URLs, and Serializers.
-    final KafkaProducer<String, String> stringKafkaProducer = new KafkaProducer<String, String>(
-        producerProps);
+    final KafkaProducer<String, String> stringKafkaProducer = new KafkaProducer<String, String>(producerProps);
     try {
       for (int i = 0; i < messageCount; i++) {
 
         //Create message and send to (<code> topicName </code>) received in parameter.
-        final Object o = stringKafkaProducer
-            .send(new ProducerRecord<String, String>(topicName, "msg: " + i));
+        final Object o = stringKafkaProducer.send(new ProducerRecord<String, String>(topicName, "msg: " + i));
         LOG.info("Produced Message = [" + o + "]");
 
       }

@@ -33,16 +33,14 @@ public class SchemaRegistryUtils {
 
     try {
 
-      final URL url = new URL(
-          DEFAULT_BASE_REGISTRY_SUBJECT_URL + TOPIC_NAME + VALUE_SUFFIX + VERSIONS);
+      final URL url = new URL(DEFAULT_BASE_REGISTRY_SUBJECT_URL + TOPIC_NAME + VALUE_SUFFIX + VERSIONS);
       final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       conn.setDoOutput(true);
       conn.setRequestMethod("POST");
       conn.setRequestProperty("Content-Type", "application/vnd.schemaregistry.v1+json");
 
       final String input =
-          "{\"schema\":\"" + readFile(SCHEMA_FILE).replace("\"", "\\\"").replace(" ", "")
-              .replace("\n", "")
+          "{\"schema\":\"" + readFile(SCHEMA_FILE).replace("\"", "\\\"").replace(" ", "").replace("\n", "")
               .replace("\r", "") + "\"}";
       System.out.println(input);
       final OutputStream os = conn.getOutputStream();
@@ -50,12 +48,10 @@ public class SchemaRegistryUtils {
       os.flush();
 
       if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
-        throw new RuntimeException("Failed : HTTP error code : "
-            + conn.getResponseCode());
+        throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
       }
 
-      final BufferedReader br = new BufferedReader(new InputStreamReader(
-          (conn.getInputStream())));
+      final BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
       String output;
       System.out.println("Output from Server .... \n");
@@ -88,12 +84,10 @@ public class SchemaRegistryUtils {
       conn.setRequestProperty("Accept", "application/json");
 
       if (conn.getResponseCode() != 200) {
-        throw new RuntimeException("Failed : HTTP error code : "
-            + conn.getResponseCode());
+        throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
       }
 
-      final BufferedReader br = new BufferedReader(new InputStreamReader(
-          (conn.getInputStream())));
+      final BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
       String output;
       System.out.println("Output from Server .... \n");
@@ -113,22 +107,17 @@ public class SchemaRegistryUtils {
 
     URL url = null;
     try {
-      url = new URL(DEFAULT_BASE_REGISTRY_SUBJECT_URL
-          + topicName
-          + VALUE_SUFFIX + VERSIONS
-          + "/latest");
+      url = new URL(DEFAULT_BASE_REGISTRY_SUBJECT_URL + topicName + VALUE_SUFFIX + VERSIONS + "/latest");
       final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       conn.setDoOutput(true);
       conn.setRequestMethod("GET");
       conn.setRequestProperty("Accept", "application/json");
 
       if (conn.getResponseCode() != 200) {
-        throw new RuntimeException("Failed : HTTP error code : "
-            + conn.getResponseCode());
+        throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
       }
 
-      final BufferedReader br = new BufferedReader(new InputStreamReader(
-          (conn.getInputStream())));
+      final BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
       String output;
       System.out.println("Output from Server .... \n");
@@ -146,8 +135,7 @@ public class SchemaRegistryUtils {
   protected static String readFile(final String fileName) {
     String content = null;
     try {
-      content = new Scanner(
-          new File(SchemaRegistryUtils.class.getClassLoader().getResource(fileName).getFile()))
+      content = new Scanner(new File(SchemaRegistryUtils.class.getClassLoader().getResource(fileName).getFile()))
           .useDelimiter("\\Z").next();
     } catch (final FileNotFoundException e) {
       e.printStackTrace();

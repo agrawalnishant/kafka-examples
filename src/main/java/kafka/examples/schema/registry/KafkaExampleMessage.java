@@ -19,17 +19,15 @@ public class KafkaExampleMessage extends org.apache.avro.specific.SpecificRecord
       "{\"type\":\"record\",\"name\":\"KafkaExampleMessage\",\"namespace\":\"kafka.examples.schema.registry\",\"fields\":[{\"name\":\"f1\",\"type\":\"string\"}]}");
   private static final long serialVersionUID = 275949937053309365L;
   private static SpecificData MODEL$ = new SpecificData();
-  private static final BinaryMessageEncoder<KafkaExampleMessage> ENCODER =
-      new BinaryMessageEncoder<KafkaExampleMessage>(MODEL$, SCHEMA$);
-  private static final BinaryMessageDecoder<KafkaExampleMessage> DECODER =
-      new BinaryMessageDecoder<KafkaExampleMessage>(MODEL$, SCHEMA$);
+  private static final BinaryMessageEncoder<KafkaExampleMessage> ENCODER = new BinaryMessageEncoder<KafkaExampleMessage>(
+      MODEL$, SCHEMA$);
+  private static final BinaryMessageDecoder<KafkaExampleMessage> DECODER = new BinaryMessageDecoder<KafkaExampleMessage>(
+      MODEL$, SCHEMA$);
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<KafkaExampleMessage>
-      WRITER$ = (org.apache.avro.io.DatumWriter<KafkaExampleMessage>) MODEL$
+  private static final org.apache.avro.io.DatumWriter<KafkaExampleMessage> WRITER$ = (org.apache.avro.io.DatumWriter<KafkaExampleMessage>) MODEL$
       .createDatumWriter(SCHEMA$);
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<KafkaExampleMessage>
-      READER$ = (org.apache.avro.io.DatumReader<KafkaExampleMessage>) MODEL$
+  private static final org.apache.avro.io.DatumReader<KafkaExampleMessage> READER$ = (org.apache.avro.io.DatumReader<KafkaExampleMessage>) MODEL$
       .createDatumReader(SCHEMA$);
   @Deprecated
   public java.lang.CharSequence f1;
@@ -75,8 +73,7 @@ public class KafkaExampleMessage extends org.apache.avro.specific.SpecificRecord
   /**
    * Deserializes a KafkaExampleMessage from a ByteBuffer.
    */
-  public static KafkaExampleMessage fromByteBuffer(
-      java.nio.ByteBuffer b) throws java.io.IOException {
+  public static KafkaExampleMessage fromByteBuffer(java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
 
@@ -164,23 +161,20 @@ public class KafkaExampleMessage extends org.apache.avro.specific.SpecificRecord
   }
 
   @Override
-  public void writeExternal(java.io.ObjectOutput out)
-      throws java.io.IOException {
+  public void writeExternal(java.io.ObjectOutput out) throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
   @Override
-  public void readExternal(java.io.ObjectInput in)
-      throws java.io.IOException {
+  public void readExternal(java.io.ObjectInput in) throws java.io.IOException {
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
   /**
    * RecordBuilder for KafkaExampleMessage instances.
    */
-  public static class Builder extends
-      org.apache.avro.specific.SpecificRecordBuilderBase<KafkaExampleMessage>
-      implements org.apache.avro.data.RecordBuilder<KafkaExampleMessage> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<KafkaExampleMessage> implements
+      org.apache.avro.data.RecordBuilder<KafkaExampleMessage> {
 
     private java.lang.CharSequence f1;
 
@@ -232,8 +226,7 @@ public class KafkaExampleMessage extends org.apache.avro.specific.SpecificRecord
      * @param value The value of 'f1'.
      * @return This builder.
      */
-    public kafka.examples.schema.registry.KafkaExampleMessage.Builder setF1(
-        java.lang.CharSequence value) {
+    public kafka.examples.schema.registry.KafkaExampleMessage.Builder setF1(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.f1 = value;
       fieldSetFlags()[0] = true;
@@ -266,8 +259,7 @@ public class KafkaExampleMessage extends org.apache.avro.specific.SpecificRecord
     public KafkaExampleMessage build() {
       try {
         KafkaExampleMessage record = new KafkaExampleMessage();
-        record.f1 =
-            fieldSetFlags()[0] ? this.f1 : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.f1 = fieldSetFlags()[0] ? this.f1 : (java.lang.CharSequence) defaultValue(fields()[0]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

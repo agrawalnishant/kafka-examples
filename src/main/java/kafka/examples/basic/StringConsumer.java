@@ -51,7 +51,7 @@ public class StringConsumer {
 
 
   private void print(final ConsumerRecord<String, String> record) {
-    LOG.info(" Topic: {}, Partition: {}, Offset: {}, Key: {}, Value {}",
-        record.topic(), record.partition(), record.offset(), record.key(), record.value());
+    LOG.info(" Topic: {}, Partition: {}, Offset: {}, Key: {}, Value {}", record.topic(), record.partition(),
+        record.offset(), record.key(), record.value());
   }
 }
