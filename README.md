@@ -1,11 +1,11 @@
 # kafka-examples
 
 Here you will find example code, written in __Java__, to understand various features provided by __Kafka__.
-Each of these examples demostrates one or related aspects of Kafka messaging, in a __simple__ manner.
+These examples demostrate different concepts of Kafka messaging, in a __simple__ manner.
 
-These examples expect a minimal setup, for which instructions are mentioned in __Setup__ section at the end. Please use these instructions before running the code.
+These examples expect a minimal setup, for which instructions are mentioned in __Setup__ section below. Please follow these instructions before running the code.
 
-Examples are arranges by following topics:
+Examples are arranged by following topics:
 
 + Warmup with console utilities
 + [Basic Producer and Baisc Consumer](https://github.com/agrawalnishant/kafka-examples/tree/master/src/main/java/kafka/examples/basic)
@@ -15,9 +15,9 @@ Examples are arranges by following topics:
 
 ## Setup
 ### Basic Setup
-1. To uses some advanced features of Kafka, we will use Confluent's distribution available in [Download Center](https://www.confluent.io/download-center/). Download and un-Tar the contents. Lets call this location as KAFKA_HOME, for the purpose of discussion here. This location has folders like bin/ and config/ inside.
+1. To use some advanced features of Kafka, we will use Confluent's distribution available in [Download Center](https://www.confluent.io/download-center/). Download and un-Tar the contents. Lets call this location as KAFKA_HOME, for the purpose of discussion here. This location has folders like bin/ and config/ inside.
 
-2. In console / terminal window go to KAFKA_HOME location, and excute following commands:
+2. In console / terminal window go to KAFKA_HOME location, and execute following commands:
     1. Start zookeeper:
     `zookeeper-server-start.sh ../config/zookeeper.properties`
         - Wait for Zookeeper to start.
@@ -53,14 +53,17 @@ __Enable 2 Partitions for Topic to support Consumer Group__
 
 In any messaging system, it is important to keep producers and consumers to agree on message schema. If a message enters messaging system that is not valid for a consuming application, it will add overhead on these applications to handle such invalid messages.
 
-This point is stressed enough in [Gwen Shapira's tech talk](https://vimeo.com/167028700). Confluent provides a nice standardized solution for this in Schema Registry, which is shown by SchemaRegistryDemo class here.
+This point is stressed enough in [Gwen Shapira's tech talk](https://vimeo.com/167028700). [Confluent](https://www.confluent.io/) provides a clean standardized solution for this in Schema Registry, which is shown by [Schema Registry example code](https://github.com/agrawalnishant/kafka-examples/tree/master/src/main/java/kafka/examples/schema/registry).
 
-Most messaging and streaming systems use Avro, for reasons shared by Cloudera [here](http://blog.cloudera.com/blog/2011/05/three-reasons-why-apache-avro-data-serialization-is-a-good-choice-for-openrtb/), and on Quora [here](https://www.quora.com/What-are-pros-and-cons-of-Apache-Avro)
+Most messaging and streaming systems use Avro, for reasons shared by [Cloudera](http://blog.cloudera.com/blog/2011/05/three-reasons-why-apache-avro-data-serialization-is-a-good-choice-for-openrtb/), and on [Quora](https://www.quora.com/What-are-pros-and-cons-of-Apache-Avro).
 
 Please follow these steps for SchemaRegisteryDemo to work:
 * Start Schema Registry
-  This is the reason we needed the Confluent's distribution of Kafka. Go to bin folder in expanded Kafka.
+  
+  Go to bin folder in untarred / unzipped Kafka, and execute:
     - `schema-registry-start ../etc/schema-registry/schema-registry.properties`
+    
+    This is the reason we need the Confluent's distribution of Kafka. 
     
 * Compile Avro Schema (KafkaExampleMessage.avsc) to Java class:
     - `mvn generate-sources`
