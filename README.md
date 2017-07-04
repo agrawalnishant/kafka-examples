@@ -53,7 +53,7 @@ __Enable 2 Partitions for Topic to support Consumer Group__
 
 In any messaging system, it is important to keep producers and consumers to agree on message schema. If a message enters messaging system that is not valid for a consuming application, it will add overhead on these applications to handle such invalid messages.
 
-This point is stressed enough in [Gwen Shapira's tech talk](https://vimeo.com/167028700). Confluent provides a nice standardized solution for this in Schema Registry, which is shown by SchemaRegistryDemo class here.
+This point is stressed enough in [Gwen Shapira's tech talk](https://vimeo.com/167028700). [Confluent](https://www.confluent.io/) provides a clean standardized solution for this in Schema Registry, which is shown by [Schema Registry Demo code] (https://github.com/agrawalnishant/kafka-examples/tree/master/src/main/java/kafka/examples/schema/registry).
 
 Most messaging and streaming systems use Avro, for reasons shared by Cloudera [here](http://blog.cloudera.com/blog/2011/05/three-reasons-why-apache-avro-data-serialization-is-a-good-choice-for-openrtb/), and on Quora [here](https://www.quora.com/What-are-pros-and-cons-of-Apache-Avro)
 
