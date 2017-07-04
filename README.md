@@ -59,8 +59,11 @@ Most messaging and streaming systems use Avro, for reasons shared by [Cloudera](
 
 Please follow these steps for SchemaRegisteryDemo to work:
 * Start Schema Registry
-  This is the reason we needed the Confluent's distribution of Kafka. Go to bin folder in expanded Kafka.
+  
+  Go to bin folder in untarred / unzipped Kafka, and execute:
     - `schema-registry-start ../etc/schema-registry/schema-registry.properties`
+    
+    This is the reason we needed the Confluent's distribution of Kafka. 
     
 * Compile Avro Schema (KafkaExampleMessage.avsc) to Java class:
     - `mvn generate-sources`
