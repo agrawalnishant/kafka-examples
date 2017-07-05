@@ -3,6 +3,8 @@
 Here you will find example code, written in __Java__, to understand various features provided by __Kafka__.
 These examples demostrate different concepts of Kafka messaging, in a __simple__ manner.
 
+Motivation for these examples comes from [Ryan Plant's](https://twitter.com/ryan_plant) Kafka [course](https://app.pluralsight.com/library/courses/apache-kafka-getting-started/table-of-contents). 
+
 These examples expect a minimal setup, for which instructions are mentioned in __Setup__ section below. Please follow these instructions before running the code.
 
 Examples are arranged by following topics:
