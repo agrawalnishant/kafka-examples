@@ -14,7 +14,7 @@ Examples are arranged by following topics:
 + Schema Registery
 
 ## Setup
-### Basic Setup
+### Basic Single Partition Setup
 1. To use some advanced features of Kafka, we will use Confluent's distribution available in [Download Center](https://www.confluent.io/download-center/). Download and un-Tar the contents. Lets call this location as KAFKA_HOME, for the purpose of discussion here. This location has folders like bin/ and config/ inside.
 
 2. In console / terminal window go to KAFKA_HOME location, and execute following commands:
@@ -49,7 +49,7 @@ __Enable 2 Partitions for Topic to support Consumer Group__
     - `kafka-topics.sh  -zookeeper localhost:2181 --alter --topic topic_basic --partitions 2`
     
 
-### Setup Schema Registry
+### Setup for Schema Registry
 
 In any messaging system, it is important to keep producers and consumers to agree on message schema. If a message enters messaging system that is not valid for a consuming application, it will add overhead on these applications to handle such invalid messages.
 
