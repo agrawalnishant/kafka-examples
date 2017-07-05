@@ -11,7 +11,7 @@ Examples are arranged by following topics:
 + [Basic Producer and Baisc Consumer](https://github.com/agrawalnishant/kafka-examples/tree/master/src/main/java/kafka/examples/basic)
 + [Consumer Group](https://github.com/agrawalnishant/kafka-examples/blob/master/src/main/java/kafka/examples/basic/StringProducerConsumerGroupDemo.java)
 + Custom Partitioner
-+ Schema Registery
++ [Schema Registery](https://github.com/agrawalnishant/kafka-examples/tree/master/src/main/java/kafka/examples/schema/registry)
 
 ## Setup
 ### Basic Single Partition Setup
