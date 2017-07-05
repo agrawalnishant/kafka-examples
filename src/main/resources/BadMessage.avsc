@@ -1,0 +1,11 @@
+{
+  "namespace": "kafka.examples.schema.registry",
+  "type": "record",
+  "name": "BadMessage",
+  "fields": [
+    {
+      "name": "f2",
+      "type": "int"
+    }
+  ]
+}

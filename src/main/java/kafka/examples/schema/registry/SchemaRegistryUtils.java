@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class SchemaRegistryUtils {
 
-  public static void main(final String[] args) {
+  public static void addSchemaAndPrintItsInfo() {
 
     addOrUpdateSchema();
     System.out.println("Now, getting registered types");
@@ -90,7 +90,7 @@ public class SchemaRegistryUtils {
       final BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
       String output;
-      System.out.println("Output from Server .... \n");
+      System.out.println("Registered Schema Version(s):  \n");
       while ((output = br.readLine()) != null) {
         System.out.println(output);
       }
@@ -120,7 +120,7 @@ public class SchemaRegistryUtils {
       final BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
       String output;
-      System.out.println("Output from Server .... \n");
+      System.out.println("Registered Schema:  \n");
       while ((output = br.readLine()) != null) {
         System.out.println(output);
       }

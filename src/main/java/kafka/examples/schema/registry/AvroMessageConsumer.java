@@ -36,11 +36,9 @@ public class AvroMessageConsumer {
 
       while (true) {
         final ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(10);
-        for (final ConsumerRecord<String, String> record : consumerRecords) {
-          System.out.println(String
-              .format("Topic: %s, Partition: %d, Offset: %d, Key: %s, Value %s", record.topic(), record.partition(),
-                  record.offset(), record.key(), record.value()));
-        }
+
+        // Iterate over each message (<code> ConsumerRecord </code>), and print its attributes.
+        consumerRecords.spliterator().forEachRemaining(this::print);
       }
     } catch (final Exception exc) {
       exc.printStackTrace();
@@ -49,6 +47,11 @@ public class AvroMessageConsumer {
     }
 
 
+  }
+
+  private void print(final ConsumerRecord<String, String> record) {
+    LOG.info(" Topic: {}, Partition: {}, Offset: {}, Key: {}, Value {}", record.topic(), record.partition(),
+        record.offset(), record.key(), record.value());
   }
 
 }
