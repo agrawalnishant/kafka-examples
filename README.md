@@ -28,6 +28,7 @@ Examples are arranged by following topics:
         
 3. Create a Kafka topic `topic_basic` with single replica and single partition:
     - `kafka-topics.sh  -zookeeper localhost:2181 --create --topic topic_basic --replication-factor 1 --partitions 1`
+    
 [Code](https://github.com/agrawalnishant/kafka-examples/tree/master/src/main/java/kafka/examples/basic)
         
 ### Multi-partition Setup for Consumer Group
@@ -49,6 +50,8 @@ Single partition can only attach to a single Kafka consumer in a group setting. 
 __Enable 2 Partitions for Topic to support Consumer Group__
 * Use following command to increase replica count of topic, created ealier, from One to Two:
     - `kafka-topics.sh  -zookeeper localhost:2181 --alter --topic topic_basic --partitions 2`
+
+
 [Code](https://github.com/agrawalnishant/kafka-examples/blob/master/src/main/java/kafka/examples/basic/StringProducerConsumerGroupDemo.java)    
 
 ### Setup for Schema Registry
@@ -69,4 +72,6 @@ Please follow these steps for SchemaRegisteryDemo to work:
     
 * Compile Avro Schema (KafkaExampleMessage.avsc) to Java class:
     - `mvn generate-sources`
+
+
 [Code](https://github.com/agrawalnishant/kafka-examples/tree/master/src/main/java/kafka/examples/schema/registry)
