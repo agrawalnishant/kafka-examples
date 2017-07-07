@@ -23,21 +23,26 @@ public class SchemaRegisteryDemo implements RegistryProperties {
       SchemaRegistryUtils.addSchemaAndGetRegistrationInfo();
 
       //Now we start a consumer to consume the messages to be produced later.
-      final AvroMessageConsumer consumer = new AvroMessageConsumer();
-      final ExecutorService consumerExecutorService = Executors.newSingleThreadExecutor();
-      consumerExecutorService.execute(() -> consumer.consume(getConsumerProperties(), TOPIC_NAME));
+      final ExecutorService consumerExecutorService = Executors.newFixedThreadPool(AVAILABLE_KAFKA_PARTITIONS_MIN);
+      for (int count = 0; count < AVAILABLE_KAFKA_PARTITIONS_MIN; count++) {
+        final AvroMessageConsumer consumer = new AvroMessageConsumer();
+        consumerExecutorService.execute(() -> consumer.consume(getConsumerProperties(), TOPIC_NAME));
+      }
 
+      //Now produce messages
       final AvroMessageProducer producer = new AvroMessageProducer();
       final ExecutorService producerExecutorService = Executors.newSingleThreadExecutor();
 
-      //First Send Bad Message, which should result in error in sending: "schema being registered is incompatible with an earlier schema"
+      //First Send Bad Message, which should fail in sending, with error:
+      // "schema being registered is incompatible with an earlier schema"
       producerExecutorService
           .execute(() -> producer.produceValidMessage(getProducerProperties(), TOPIC_NAME, MESSAGE_COUNT));
 
       //Then send message valid as per schema
       producerExecutorService
           .execute(() -> producer.produceInvalidMessage(getProducerProperties(), TOPIC_NAME, MESSAGE_COUNT));
-      LOG.info("Will wait " + (WAIT_TIME_MILLIS / 1000) + "seconds for consumer output before EXIT.");
+
+      LOG.info("Will wait " + (WAIT_TIME_MILLIS / 1000) + " seconds for consumer output before EXIT.");
       Thread.sleep(WAIT_TIME_MILLIS);
     } catch (final Exception ex) {
       ex.printStackTrace();

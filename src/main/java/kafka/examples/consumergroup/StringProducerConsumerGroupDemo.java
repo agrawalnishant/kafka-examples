@@ -12,7 +12,6 @@ public class StringProducerConsumerGroupDemo implements BasicProperties {
   public static void main(final String[] args) {
     final StringProducerConsumerGroupDemo demo = new StringProducerConsumerGroupDemo();
     demo.perform();
-
   }
 
   /**
