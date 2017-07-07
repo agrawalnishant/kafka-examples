@@ -13,23 +13,23 @@ import org.slf4j.MDC;
 
 public class AvroMessageConsumer {
 
-  static final Logger LOG = LoggerFactory.getLogger(AvroMessageConsumer.class);
+  private static final Logger LOG = LoggerFactory.getLogger(AvroMessageConsumer.class);
+  private static final String MDC_KEY_CONSUMERID = "consumerid";
 
   // UUID used in Logback MDC to identify messages consumed by different consumers
-  private final UUID consumerId = UUID.randomUUID();
+  private final UUID CONSUMER_ID = UUID.randomUUID();
 
   /**
    * Consumes Avro messages received over topicName kafka topic.
    */
   public void consume(final Properties consumerProps, final String topicName) {
-    MDC.put("consumerid", consumerId.toString());
+    MDC.put(MDC_KEY_CONSUMERID, CONSUMER_ID.toString());
 
     // Prepare List of topics this consumer will consume messages from.
     // Here we only consume from a single topic.
     final KafkaConsumer kafkaConsumer = new KafkaConsumer(consumerProps);
     final ArrayList<String> topicList = new ArrayList<>();
     topicList.add(topicName);
-
     kafkaConsumer.subscribe(topicList);
 
     try {
@@ -46,12 +46,10 @@ public class AvroMessageConsumer {
       kafkaConsumer.close();
     }
 
-
   }
 
   private void print(final ConsumerRecord<String, String> record) {
     LOG.info(" Topic: {}, Partition: {}, Offset: {}, Key: {}, Value {}", record.topic(), record.partition(),
         record.offset(), record.key(), record.value());
   }
-
 }

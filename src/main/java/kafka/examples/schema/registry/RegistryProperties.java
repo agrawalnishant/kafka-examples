@@ -5,11 +5,11 @@ import kafka.examples.basic.BasicProperties;
 
 public interface RegistryProperties extends BasicProperties {
 
-  public static final String VERSIONS = "/versions";
+  String VERSIONS = "/versions";
   String SCHEMA_REG_URL = "http://localhost:8081";
-  static final String DEFAULT_BASE_REGISTRY_SUBJECT_URL = SCHEMA_REG_URL + "/subjects/";
-  static final String VALUE_SUFFIX = "-value";
-  static final String SCHEMA_FILE = "KafkaExampleMessage.avsc";
+  String DEFAULT_BASE_REGISTRY_SUBJECT_URL = SCHEMA_REG_URL + "/subjects/";
+  String VALUE_SUFFIX = "-value";
+  String SCHEMA_FILE = "KafkaExampleMessage.avsc";
   String KAFKA_AVRO_SERIALIZER = "io.confluent.kafka.serializers.KafkaAvroSerializer";
   String KAFKA_AVRO_DESERIALIZER = "io.confluent.kafka.serializers.KafkaAvroDeserializer";
 

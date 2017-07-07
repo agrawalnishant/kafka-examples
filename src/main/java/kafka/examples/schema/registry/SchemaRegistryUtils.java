@@ -13,23 +13,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SchemaRegistryUtils {
 
-  public static void addSchemaAndPrintItsInfo() {
+  static final Logger LOG = LoggerFactory.getLogger(SchemaRegistryUtils.class);
+
+  public static void addSchemaAndGetRegistrationInfo() {
 
     addOrUpdateSchema();
-    System.out.println("Now, getting registered types");
+    LOG.info("Now, getting registered types");
     getRegisteredTypes();
-
     getLatestRegisteredVersionOfSubject(TOPIC_NAME);
-
   }
 
-  public static void addOrUpdateSchema() {
+  private static void addOrUpdateSchema() {
 
     try {
 
@@ -42,38 +43,26 @@ public class SchemaRegistryUtils {
       final String input =
           "{\"schema\":\"" + readFile(SCHEMA_FILE).replace("\"", "\\\"").replace(" ", "").replace("\n", "")
               .replace("\r", "") + "\"}";
-      System.out.println(input);
+      LOG.info(input);
       final OutputStream os = conn.getOutputStream();
       os.write(input.getBytes());
       os.flush();
-
       if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
         throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
       }
-
       final BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-
       String output;
-      System.out.println("Output from Server .... \n");
+      LOG.info("Output from Server .... \n");
       while ((output = br.readLine()) != null) {
-        System.out.println(output);
+        LOG.info(output);
       }
-
       conn.disconnect();
-
-    } catch (final MalformedURLException e) {
-
-      e.printStackTrace();
-
     } catch (final IOException e) {
-
-      e.printStackTrace();
-
+      LOG.trace("", e);
     }
-
   }
 
-  public static void getRegisteredTypes() {
+  private static void getRegisteredTypes() {
 
     URL url = null;
     try {
@@ -82,25 +71,19 @@ public class SchemaRegistryUtils {
       conn.setDoOutput(true);
       conn.setRequestMethod("GET");
       conn.setRequestProperty("Accept", "application/json");
-
       if (conn.getResponseCode() != 200) {
         throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
       }
-
       final BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-
       String output;
-      System.out.println("Registered Schema Version(s):  \n");
+      LOG.info("Registered Schema Version(s):  \n");
       while ((output = br.readLine()) != null) {
-        System.out.println(output);
+        LOG.info(output);
       }
-
       conn.disconnect();
-
     } catch (final IOException e) {
       e.printStackTrace();
     }
-
   }
 
   private static void getLatestRegisteredVersionOfSubject(final String topicName) {
@@ -112,27 +95,22 @@ public class SchemaRegistryUtils {
       conn.setDoOutput(true);
       conn.setRequestMethod("GET");
       conn.setRequestProperty("Accept", "application/json");
-
       if (conn.getResponseCode() != 200) {
         throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
       }
-
       final BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-
       String output;
-      System.out.println("Registered Schema:  \n");
+      LOG.info("Registered Schema:  \n");
       while ((output = br.readLine()) != null) {
-        System.out.println(output);
+        LOG.info(output);
       }
-
       conn.disconnect();
-
     } catch (final IOException e) {
       e.printStackTrace();
     }
   }
 
-  protected static String readFile(final String fileName) {
+  private static String readFile(final String fileName) {
     String content = null;
     try {
       content = new Scanner(new File(SchemaRegistryUtils.class.getClassLoader().getResource(fileName).getFile()))
@@ -142,5 +120,4 @@ public class SchemaRegistryUtils {
     }
     return content;
   }
-
 }

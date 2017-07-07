@@ -4,11 +4,8 @@ package kafka.examples.basic;
 public interface BasicProperties {
 
   int MESSAGE_COUNT = 20;
-
   int AVAILABLE_KAFKA_PARTITIONS_MIN = 2;
-
   String BROKER_BOOTSTRAP_URL = "localhost:9092, localhost:9093";
-
   String TOPIC_NAME = "topic_basic";
   String GROUP_ID = "basic";
   String STRING_DESERIALIZER = "org.apache.kafka.common.serialization.StringDeserializer";

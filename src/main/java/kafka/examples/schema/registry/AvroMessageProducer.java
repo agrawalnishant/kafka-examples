@@ -31,8 +31,6 @@ public class AvroMessageProducer {
     } finally {
       avroProducer.close();
     }
-
-
   }
 
   /**
@@ -42,7 +40,6 @@ public class AvroMessageProducer {
   public void produceInvalidMessage(final Properties producerProps, final String topicName, final int messageCount) {
 
     final KafkaProducer<String, BadMessage> avroProducer = new KafkaProducer<String, BadMessage>(producerProps);
-
     try {
       for (int i = 0; i < messageCount; i++) {
         final BadMessage message = new BadMessage(i);
@@ -54,8 +51,5 @@ public class AvroMessageProducer {
     } finally {
       avroProducer.close();
     }
-
-
   }
-
 }
