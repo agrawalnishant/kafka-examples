@@ -63,6 +63,12 @@ This point is stressed enough in [Gwen Shapira's tech talk](https://vimeo.com/16
 Most messaging and streaming systems use Avro, for reasons shared by [Cloudera](http://blog.cloudera.com/blog/2011/05/three-reasons-why-apache-avro-data-serialization-is-a-good-choice-for-openrtb/), and on [Quora](https://www.quora.com/What-are-pros-and-cons-of-Apache-Avro).
 
 Please follow these steps for SchemaRegisteryDemo to work:
+* We use a different Topic for messages based on a particular schema:
+
+Go to bin folder to create a new Kafka topic `topic_schema` with 2 partitions, while 2 kafka broker instances are running:
+  - `kafka-topics.sh -zookeeper localhost:2181 --create --topic topic_schema --replication-factor 1 --partitions 2`
+
+
 * Start Schema Registry
   
   Go to bin folder in untarred / unzipped Kafka, and execute:
