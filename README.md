@@ -50,6 +50,13 @@ Single partition can only attach to a single Kafka consumer in a group setting. 
 __Enable 2 Partitions for Topic to support Consumer Group__
 * Use following command to increase replica count of topic, created ealier, from One to Two:
     - `kafka-topics.sh  -zookeeper localhost:2181 --alter --topic topic_basic --partitions 2`
+    
+* In the output log, we see there are 2 different thread ids and 2 different consumer ids, similar to these:
+
+  `[pool-1-thread-1] [consumer:0d86c38a-7936-4df8-9a88-92d947d6e087]`
+  
+  `[pool-1-thread-2] [consumer:e53155d8-c59b-4820-81e2-846e70cb2b9a]`
+
 
 
 [Source Code](https://github.com/agrawalnishant/kafka-examples/blob/master/src/main/java/kafka/examples/basic/StringProducerConsumerGroupDemo.java)    
