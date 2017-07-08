@@ -53,6 +53,7 @@ __Enable 2 Partitions for Topic to support Consumer Group__
 * In the output log, we see there are 2 different thread ids and 2 different consumer ids, similar to these:
 
   `[pool-1-thread-1] [consumer:0d86c38a-7936-4df8-9a88-92d947d6e087]`
+  
   `[pool-1-thread-2] [consumer:e53155d8-c59b-4820-81e2-846e70cb2b9a]`
 
 
