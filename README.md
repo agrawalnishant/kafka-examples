@@ -4,7 +4,7 @@ These examples written in __Java__ demostrate different concepts of __Kafka__ me
 
 Motivation for these examples comes from [Ryan Plant's](https://twitter.com/ryan_plant) Kafka [course](https://app.pluralsight.com/library/courses/apache-kafka-getting-started/table-of-contents). 
 
-Example code expects a minimal setup, for which sequential instructions are mentioned in __Setup__ section below. Please follow these instructions before running the code.
+Code examples included here require a minimal setup, for which sequential instructions are mentioned in __Setup__ section below. Please follow these instructions before running the code.
 
 Examples are arranged by following topics:
 
