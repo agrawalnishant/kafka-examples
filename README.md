@@ -8,7 +8,7 @@ Code examples included here require a minimal setup, for which sequential instru
 
 Examples are arranged by following topics:
 
-+ Zookeeper Setup
++ [Zookeeper Setup](https://github.com/agrawalnishant/kafka-examples/blob/master/README.md#zookeeper-setup)
 + [Basic Producer and Basic Consumer](https://github.com/agrawalnishant/kafka-examples/blob/master/README.md#setup)
 + [Consumer Group](https://github.com/agrawalnishant/kafka-examples#multi-partition-setup-for-consumer-group)
 + Custom Partitioner
