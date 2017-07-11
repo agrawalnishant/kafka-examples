@@ -25,7 +25,7 @@ Go to $KAFKA_HOME/bin, and execute:
 
 
 ### Zookeeper Quorum ( 3 instances)
-Instructions to setup a quorum are given in [Zookeeper Getting Started](https://zookeeper.apache.org/doc/r3.3.3/zookeeperStarted.html#sc_RunningReplicatedZooKeeper).
+Instructions to setup a quorum of ZK instances are given in [Zookeeper Getting Started](https://zookeeper.apache.org/doc/r3.3.3/zookeeperStarted.html#sc_RunningReplicatedZooKeeper).
 
 Expand zookeeper file downloaded from [mirror](http://www.apache.org/dyn/closer.cgi/zookeeper/), to a directory, and clone it 3 times. And create 3 corresponding data directories, whose location will be referred in zoo.cfg files of respective clones. Also create 3 myid files, each in corresponding data directory. Each of these myid dile will contain one of the numbers: 1, 2, or 3. As mentioned in the Starting Guide, create 3 different port pairs, and copy same to all 3 zoo.cfg files as well.
 
