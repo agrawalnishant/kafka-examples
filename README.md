@@ -33,8 +33,7 @@ And then start each zookeeper instance one by one:
   
   `..../bin/zkServer.sh start`
 
-## Setup
-### Basic Single-Partition Setup
+## Basic Single-Partition Setup
 1. To use some advanced features (i.e. Schema Registry) of Kafka, we will use Confluent's distribution available in [Download Center](https://www.confluent.io/download-center/). Download and un-Tar the contents. Lets call this location as KAFKA_HOME, for the purpose of discussion here. This location has folders like bin/ and config/ inside.
 
 2. In console / terminal window go to KAFKA_HOME location, and execute following commands:
@@ -49,7 +48,7 @@ And then start each zookeeper instance one by one:
     
 [Source Code](https://github.com/agrawalnishant/kafka-examples/tree/master/src/main/java/kafka/examples/basic)
         
-### Multi-partition Setup for Consumer Group
+## Multi-partition Setup for Consumer Group
 Step# 2 above would start a single Zookeeper instance and a single Kafka broker, which is enough for barebones message production and consumption. 
 
 But for a more robust and fault-tolerant Kafka Setup, we need at least 3 replicas and 3 partitions of Kafka for single failover instance. [ [Reason](https://forums.couchbase.com/t/why-3-node-cluster-for-automatic-failover/2759)]
@@ -79,7 +78,7 @@ __Enable 2 Partitions for Topic to support Consumer Group__
 
 [Source Code](https://github.com/agrawalnishant/kafka-examples/blob/master/src/main/java/kafka/examples/basic/StringProducerConsumerGroupDemo.java)    
 
-### Setup for Schema Registry
+## Setup for Schema Registry
 
 In any messaging system, it is important to keep producers and consumers to agree on message schema. If a message enters messaging system that is not valid for a consuming application, it will add overhead on consumers to handle such invalid messages.
 
